@@ -1,15 +1,21 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
 	return (
     <footer>
-      <img src="./logo_footer.svg" alt="Logo" className="footer__logo" />
+      <Link to="/">
+        <img src="./logo_footer.svg" alt="Logo" className="footer__logo" />
+      </Link>
       <ul className="footer__list">
-        <li className="footer__list-item">Home</li>
-        <li className="footer__list-item">About</li>
-        <li className="footer__list-item">Contact</li>
-        <li className="footer__list-item">Privacy Policy</li>
-        <li className="footer__list-item">Terms of Service</li>
+        <Link to="/">
+          <li className="footer__list-item">Home</li>
+        </Link>
+        <li className="footer__list-item no-cursor">About</li>
+        <li className="footer__list-item no-cursor">Contact Us</li>
+        <li className="footer__list-item no-cursor">Privacy Policy</li>
+        <li className="footer__list-item no-cursor">Terms of Use</li>
       </ul>
-      <div className="copyright">Copyright &copy; Game Library 2025</div>
+      <div className="copyright">&copy; 2025 Game Library</div>
     </footer>
   );
 }

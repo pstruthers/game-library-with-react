@@ -4,9 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faHouse } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faPhone, faGamepad, faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faHouse);
+library.add(faHouse, faPhone, faGamepad, faMagnifyingGlass, faXmark);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

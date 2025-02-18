@@ -9,11 +9,22 @@ const Navbar = () => {
           <img src="./logo.svg" alt="Logo" className="logo" />
         </Link>
         <ul className="nav__list">
-          <li className="nav__list-item">
-            <FontAwesomeIcon icon="house" />
+          <Link to="/">
+            <li className="nav__list-item">
+              <FontAwesomeIcon icon="fa-solid fa-house" />
+              <span className="nav__list-item--text">Home</span>
+            </li>
+          </Link>
+          <Link to="/games">
+            <li className="nav__list-item">
+              <FontAwesomeIcon icon="fa-solid fa-gamepad" />
+              <span className="nav__list-item--text">Games</span>
+            </li>
+          </Link>
+          <li className="nav__list-item no-cursor">
+            <FontAwesomeIcon icon="fa-solid fa-phone" />
+            <span className="nav__list-item--text">Contact</span>
           </li>
-          <li className="nav__list-item">About</li>
-          <li className="nav__list-item">Contact</li>
         </ul>
       </div>
     </nav>
