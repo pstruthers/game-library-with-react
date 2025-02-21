@@ -76,7 +76,10 @@ const Games = () => {
             type="button"
             className="btn prev__btn"
             disabled={!prevPage}
-            onClick={() => setPage((prevPage) => prevPage - 1)}
+            onClick={() => {
+              setPage((prevPage) => prevPage - 1);
+              window.scrollTo({ top: 0 });
+            }}
           >
             <FontAwesomeIcon icon="fa-solid fa-chevron-left" />
             PREV
@@ -85,7 +88,10 @@ const Games = () => {
             type="button"
             className="btn next__btn"
             disabled={!nextPage}
-            onClick={() => setPage((prevPage) => prevPage + 1)}
+            onClick={() => {
+              setPage((prevPage) => prevPage + 1);
+              window.scrollTo({ top: 0 });
+            }}
           >
             NEXT
             <FontAwesomeIcon icon="fa-solid fa-chevron-right" />
