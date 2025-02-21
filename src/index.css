@@ -177,6 +177,13 @@ a {
   transform: scale(1.05);
 }
 
+.game-card__container--skeleton {
+  width: 100%;
+  height: 300px;
+  background-color:rgb(200, 200, 200);
+  border-radius: 10px;
+}
+
 .game-card {
   width: calc(100% / 4);
   display: flex;

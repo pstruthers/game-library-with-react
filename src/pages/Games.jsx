@@ -7,6 +7,7 @@ const Games = () => {
   const [page, setPage] = useState(1);
   const [prevPage, setPrevPage] = useState(null);
   const [nextPage, setNextPage] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   function formatDate(dateString) {
     const date = new Date(dateString);
@@ -20,12 +21,14 @@ const Games = () => {
 
   useEffect(() => {
     async function fetchGames() {
+      setIsLoading(true);
       const { data } = await axios.get(
         `https://api.rawg.io/api/games?key=58ee01e52ce14968a6c26b86c06b3f2b&page=${page}`
       );
       setGames(data.results);
       setPrevPage(data.previous);
       setNextPage(data.next);
+      setIsLoading(false);
     }
     fetchGames();
   }, [page]);
@@ -38,26 +41,36 @@ const Games = () => {
   return (
     <div>
       <div className="games__container">
-        {games.map((game) => (
-          <div className="game-card" key={game.id}>
-            <div className="game-card__container">
-              <figure className="game__img--wrapper">
-                <img src={game.background_image} alt="" className="game__img" />
-              </figure>
-              <div className="game__info--wrapper">
-                <div className="game__info">
-                  <h5 className="game__title">{game.name}</h5>
-                  <h6 className="game__release-date">
-                    {formatDate(game.released)}
-                  </h6>
-                </div>
-                {game.metacritic && (
-                  <h6 className="game__score">{game.metacritic}</h6>
-                )}
+        {isLoading
+          ? new Array(20).fill(0).map((_, index) => (
+              <div className="game-card" key={index}>
+                <div className="game-card__container--skeleton" />
               </div>
-            </div>
-          </div>
-        ))}
+            ))
+          : games.map((game) => (
+              <div className="game-card" key={game.id}>
+                <div className="game-card__container">
+                  <figure className="game__img--wrapper">
+                    <img
+                      src={game.background_image}
+                      alt=""
+                      className="game__img"
+                    />
+                  </figure>
+                  <div className="game__info--wrapper">
+                    <div className="game__info">
+                      <h5 className="game__title">{game.name}</h5>
+                      <h6 className="game__release-date">
+                        {formatDate(game.released)}
+                      </h6>
+                    </div>
+                    {game.metacritic && (
+                      <h6 className="game__score">{game.metacritic}</h6>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
         <div className="btn__container">
           <button
             type="button"
