@@ -14,7 +14,7 @@ import {
   faChevronLeft,
   faChevronRight
 } from "@fortawesome/free-solid-svg-icons";
-import { faPlaystation, faXbox } from "@fortawesome/free-brands-svg-icons";
+import { faPlaystation, faXbox, faXTwitter, faFacebookF, faInstagram, faDiscord } from "@fortawesome/free-brands-svg-icons";
 
 library.add(
   faHouse,
@@ -26,7 +26,11 @@ library.add(
   faXbox,
   faDesktop,
   faChevronLeft,
-  faChevronRight
+  faChevronRight,
+  faXTwitter,
+  faFacebookF,
+  faInstagram,
+  faDiscord
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

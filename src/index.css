@@ -222,6 +222,7 @@ a {
 .game__release-date {
   color: rgb(200, 200, 200);
   font-size: 14px;
+  font-weight: 600;
 }
 
 .game__score {
@@ -295,6 +296,17 @@ footer {
   align-items: center;
 }
 
+.footer__container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
 .footer__logo {
   max-width: 180px;
   width: 100%;
@@ -322,4 +334,22 @@ footer {
   text-align: center;
   margin-bottom: 28px;
   padding: 0 16px;
+}
+
+.socials__list {
+  color: white;
+  display: flex;
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}
+
+.socials__icon {
+  margin: 0 8px;
+  transition: all 300ms;
+}
+
+.socials__icon:hover {
+  transform: scale(1.25);
+  cursor: pointer;
 }
