@@ -1,19 +1,36 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faHouse, faPhone, faGamepad, faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faHouse,
+  faPhone,
+  faGamepad,
+  faMagnifyingGlass,
+  faXmark,
+  faDesktop,
+  faChevronLeft,
+  faChevronRight
+} from "@fortawesome/free-solid-svg-icons";
+import { faPlaystation, faXbox } from "@fortawesome/free-brands-svg-icons";
 
-library.add(faHouse, faPhone, faGamepad, faMagnifyingGlass, faXmark);
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+library.add(
+  faHouse,
+  faPhone,
+  faGamepad,
+  faMagnifyingGlass,
+  faXmark,
+  faPlaystation,
+  faXbox,
+  faDesktop,
+  faChevronLeft,
+  faChevronRight
 );
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

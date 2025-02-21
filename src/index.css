@@ -147,6 +147,137 @@ a {
   max-width: 600px;
 }
 
+/* GAMES PAGE */
+
+.games__container {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.game-card__container {
+  position: relative;
+  width: 100%;
+  flex-grow: 1;
+  background-color: rgb(40, 40, 40);
+  border-radius: 10px;
+  overflow: visible;
+  transition: all 300ms ease;
+}
+
+.game-card__container:hover {
+  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.game-card__container:hover .game__img {
+  transform: scale(1.05);
+}
+
+.game-card {
+  width: calc(100% / 4);
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px 32px 16px;
+}
+
+.game__img--wrapper {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.game__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transition: all 300ms;
+}
+
+.game__info--wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.game__title {
+  color: white;
+  font-size: 20px;
+}
+
+.game__release-date {
+  color: rgb(200, 200, 200);
+  font-size: 14px;
+}
+
+.game__score {
+  color: rgb(200, 200, 200);
+  background-color:rgb(40, 40, 40);
+  font-size: 28px;
+  border: 2px solid rgb(200, 200, 200);
+  border-radius: 50%;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 8px;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+}
+
+.btn__container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.btn {
+  border: none;
+  background-color: rgb(200, 200, 200);
+  font-size: 18px;
+  font-weight: 600;
+  color:rgb(40, 40, 40);
+  transition: all 300ms;
+  padding: 8px 16px;
+  border-radius: 10px;
+}
+
+.btn:hover {
+  background-color:rgb(40, 40, 40);
+  color: white;
+  cursor: pointer;
+}
+
+.prev__btn {
+  margin-left: 16px;
+}
+
+.prev__btn:disabled {
+  background-color: rgb(200, 200, 200);
+  color:rgb(120, 120, 120);
+  cursor: default;
+}
+
+.next__btn {
+  margin-right: 16px;
+}
+
+.fa-chevron-left {
+  margin-right: 8px;
+}
+
+.fa-chevron-right {
+  margin-left: 8px;
+}
+
 /* FOOTER */
 
 footer {
