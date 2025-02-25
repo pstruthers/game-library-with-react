@@ -10,11 +10,10 @@ import {
   faGamepad,
   faMagnifyingGlass,
   faXmark,
-  faDesktop,
   faChevronLeft,
   faChevronRight
 } from "@fortawesome/free-solid-svg-icons";
-import { faPlaystation, faXbox, faXTwitter, faFacebookF, faInstagram, faDiscord } from "@fortawesome/free-brands-svg-icons";
+import { faPlaystation, faXbox, faWindows, faXTwitter, faFacebookF, faInstagram, faDiscord } from "@fortawesome/free-brands-svg-icons";
 
 library.add(
   faHouse,
@@ -24,7 +23,7 @@ library.add(
   faXmark,
   faPlaystation,
   faXbox,
-  faDesktop,
+  faWindows,
   faChevronLeft,
   faChevronRight,
   faXTwitter,

@@ -1,9 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import {
+  allowedPlatforms,
+  platformIcons,
+  platformMap,
+} from "../constants/platforms";
 
 const Games = () => {
   const [games, setGames] = useState([]);
+  const [gamesCount, setGamesCount] = useState(0);
   const [page, setPage] = useState(1);
   const [prevPage, setPrevPage] = useState(null);
   const [nextPage, setNextPage] = useState(null);
@@ -22,24 +28,44 @@ const Games = () => {
   useEffect(() => {
     async function fetchGames() {
       setIsLoading(true);
+
+      const allowedPlatformIDs = allowedPlatforms
+        .flatMap((platform) => platformMap[platform] || [])
+        .join(",");
+
       const { data } = await axios.get(
-        `https://api.rawg.io/api/games?key=58ee01e52ce14968a6c26b86c06b3f2b&page=${page}`
+        `https://api.rawg.io/api/games?key=58ee01e52ce14968a6c26b86c06b3f2b&page=${page}&platforms=${allowedPlatformIDs}`
       );
+
       setGames(data.results);
+      setGamesCount(data.count);
       setPrevPage(data.previous);
       setNextPage(data.next);
+      console.log(data.results);
       setIsLoading(false);
     }
     fetchGames();
   }, [page]);
 
-  // PLATFORM ICONS:
-  // <FontAwesomeIcon icon="fa-brands fa-playstation" />
-  // <FontAwesomeIcon icon="fa-brands fa-xbox" />
-  // <FontAwesomeIcon icon="fa-solid fa-desktop" />
-
   return (
-    <div>
+    <div className="row">
+      <header>
+        <div className="games__header--container">
+          {isLoading ? (
+            <>
+              <div className="games__header--title-skeleton" />
+              <div className="games__header--count-skeleton" />
+            </>
+          ) : (
+            <>
+              <h2 className="games__header--title">All Games</h2>
+              <p className="games__header--count">
+                {gamesCount.toLocaleString()} results
+              </p>
+            </>
+          )}
+        </div>
+      </header>
       <div className="games__container">
         {isLoading
           ? new Array(20).fill(0).map((_, index) => (
@@ -62,6 +88,15 @@ const Games = () => {
                       <h5 className="game__title">{game.name}</h5>
                       <h6 className="game__release-date">
                         {formatDate(game.released)}
+                      </h6>
+                      <h6 className="game__platforms">
+                        {game.parent_platforms
+                          .filter((platform) =>
+                            allowedPlatforms.includes(platform.platform.name)
+                          )
+                          .map(
+                            (platform) => platformIcons[platform.platform.name]
+                          )}
                       </h6>
                     </div>
                     {game.metacritic && (

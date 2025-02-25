@@ -32,14 +32,18 @@ a {
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
   height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 0 24px;
+}
+
+.row {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 /* NAVIGATION BAR */
@@ -149,13 +153,41 @@ a {
 
 /* GAMES PAGE */
 
+.games__header--container {
+  padding-left: 16px;
+  margin-bottom: 32px;
+}
+
+.games__header--title {
+  font-size: 28px;
+  color: rgb(40, 40, 40);
+}
+
+.games__header--count {
+  font-size: 18px;
+  color: rgb(40, 40, 40);
+}
+
+.games__header--title-skeleton,
+.games__header--count-skeleton {
+  height: 50px;
+  background-color: rgb(200, 200, 200);
+  border-radius: 10px;
+}
+
+.games__header--title-skeleton {
+  width: 600px;
+  margin-bottom: 16px;
+}
+
+.games__header--count-skeleton {
+  width: 200px;
+}
+
 .games__container {
   display: flex;
   flex-wrap: wrap;
   position: relative;
-  width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
 }
 
 .game-card__container {
@@ -223,6 +255,28 @@ a {
   color: rgb(200, 200, 200);
   font-size: 14px;
   font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.game__platforms {
+  display: flex;
+  align-items: center;
+}
+
+.game__platforms svg,
+.game__platforms img {
+  width: 16px;
+  height: 16px;
+  color: white;
+  margin: 4px 8px 0 8px;
+}
+
+.game__platforms svg:first-child {
+  margin-left: 0;
+}
+
+.nintendo {
+  filter: brightness(0) invert(1);
 }
 
 .game__score {
