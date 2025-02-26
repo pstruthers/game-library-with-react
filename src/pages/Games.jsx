@@ -14,6 +14,8 @@ const Games = () => {
   const [prevPage, setPrevPage] = useState(null);
   const [nextPage, setNextPage] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [clearBtn, setClearBtn] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
 
   function formatDate(dateString) {
     const date = new Date(dateString);
@@ -48,9 +50,43 @@ const Games = () => {
   }, [page]);
 
   return (
-    <div className="row">
+    <div>
       <header>
-        <div className="games__header--container">
+        <div className="games__banner">
+          <img src="./bg.jpg" alt="Banner" className="games__banner--img" />
+          <div className="games__banner--container container">
+            <h3 className="games__banner--title">Browse Games</h3>
+            <div className="home__search-bar">
+              <form id="home__search-form">
+                <input
+                  type="text"
+                  placeholder="Search by game title..."
+                  value={searchInput}
+                  onChange={(e) => {
+                    setClearBtn(e.target.value.length > 0);
+                    setSearchInput(e.target.value);
+                  }}
+                />
+                {clearBtn && (
+                  <button
+                    type="button"
+                    className="clear-search__btn"
+                    onClick={() => {
+                      setSearchInput("");
+                      setClearBtn(false);
+                    }}
+                  >
+                    <FontAwesomeIcon icon="fa-solid fa-xmark" />
+                  </button>
+                )}
+                <button type="submit" className="search__btn">
+                  <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div className="games__header--container row">
           {isLoading ? (
             <>
               <div className="games__header--title-skeleton" />
@@ -66,7 +102,7 @@ const Games = () => {
           )}
         </div>
       </header>
-      <div className="games__container">
+      <div className="games__container row">
         {isLoading
           ? new Array(20).fill(0).map((_, index) => (
               <div className="game-card" key={index}>

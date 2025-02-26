@@ -13,8 +13,11 @@ const Home = () => {
   return (
     <div className="container">
       <h1 className="home__title">
-        Search our library of over <span className="blue">800,000</span> games
+        Search our library of over <span className="blue">600,000</span> games
       </h1>
+      <h5 className="home__subtitle">
+        Find your new favorite game with <span className="blue">Game Library</span>
+      </h5>
       <div className="home__search-bar">
         <form id="home__search-form">
           <input

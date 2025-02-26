@@ -89,8 +89,13 @@ a {
   text-align: center;
   font-size: 48px;
   font-weight: 800;
-  padding-bottom: 36px;
   color: rgb(40, 40, 40);
+}
+
+.home__subtitle {
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 32px;
 }
 
 .home__search-bar {
@@ -120,7 +125,7 @@ a {
   transform: translateY(-50%);
   border: none;
   background: transparent;
-  color:rgb(40, 40, 40);
+  color: rgb(40, 40, 40);
   transition: all 300ms;
 }
 
@@ -134,7 +139,7 @@ a {
 }
 
 .search__btn:hover {
-  color:rgb(0, 150, 255);
+  color: rgb(0, 150, 255);
 }
 
 .clear-search__btn {
@@ -153,8 +158,35 @@ a {
 
 /* GAMES PAGE */
 
+.games__banner {
+  position: relative;
+}
+
+.games__banner--img {
+  width: 100%;
+  height: 100%;
+  max-height: 400px;
+  filter: blur(1.5px) brightness(60%);
+}
+
+.games__banner--container {
+  width: 100%;
+  max-width: 600px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.games__banner--title {
+  color: white;
+  font-size: 40px;
+}
+
 .games__header--container {
   padding-left: 16px;
+  margin-top: 32px;
   margin-bottom: 32px;
 }
 
@@ -212,7 +244,7 @@ a {
 .game-card__container--skeleton {
   width: 100%;
   height: 300px;
-  background-color:rgb(200, 200, 200);
+  background-color: rgb(200, 200, 200);
   border-radius: 10px;
 }
 
@@ -281,7 +313,7 @@ a {
 
 .game__score {
   color: rgb(200, 200, 200);
-  background-color:rgb(40, 40, 40);
+  background-color: rgb(40, 40, 40);
   font-size: 28px;
   border: 2px solid rgb(200, 200, 200);
   border-radius: 50%;
@@ -306,14 +338,14 @@ a {
   background-color: rgb(200, 200, 200);
   font-size: 18px;
   font-weight: 600;
-  color:rgb(40, 40, 40);
+  color: rgb(40, 40, 40);
   transition: all 300ms;
   padding: 8px 16px;
   border-radius: 10px;
 }
 
 .btn:hover {
-  background-color:rgb(40, 40, 40);
+  background-color: rgb(40, 40, 40);
   color: white;
   cursor: pointer;
 }
@@ -324,7 +356,7 @@ a {
 
 .prev__btn:disabled {
   background-color: rgb(200, 200, 200);
-  color:rgb(120, 120, 120);
+  color: rgb(120, 120, 120);
   cursor: default;
 }
 
