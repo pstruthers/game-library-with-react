@@ -1,10 +1,19 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [clearBtn, setClearBtn] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const inputRef = useRef(null);
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchInput.trim()) {
+      navigate(`/games?search=${encodeURIComponent(searchInput)}`);
+    }
+  };
 
   useEffect(() => {
     inputRef.current.focus();
@@ -19,7 +28,7 @@ const Home = () => {
         Find your new favorite game with <span className="blue">Game Library</span>
       </h5>
       <div className="home__search-bar">
-        <form id="home__search-form">
+        <form id="home__search-form" onSubmit={handleSearch}>
           <input
             ref={inputRef}
             type="text"
