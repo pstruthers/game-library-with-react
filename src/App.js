@@ -8,13 +8,17 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/games" element={<Games />} />
-        <Route path="/games/:id" element={<GameInfo />} />
-      </Routes>
-      <Footer />
+      <div className="app">
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/games" element={<Games />} />
+            <Route path="/games/:id" element={<GameInfo />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </Router>
   );
 }
