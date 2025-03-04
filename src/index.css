@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Poppins", serif;
+  font-family: "Inter", sans-serif;
 }
 
 html {
@@ -324,7 +324,7 @@ a {
   position: absolute;
   top: 8px;
   right: 8px;
-  padding: 8px;
+  padding: 10px 8px 8px 8px;
   width: 60px;
   height: 60px;
   text-align: center;
@@ -395,6 +395,232 @@ a {
 
 .fa-chevron-right {
   margin-left: 8px;
+}
+
+/* GAME INFO PAGE */
+
+.back__btn {
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  color: rgb(40, 40, 40);
+  padding: 8px 16px;
+  transition: all 300ms;
+}
+
+.back__btn:hover {
+  background-color: rgb(200, 200, 200);
+  cursor: pointer;
+}
+
+.game-info__container {
+  display: flex;
+}
+
+.game-info__img {
+  width: 100%;
+  max-width: 400px;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.game-info__wrapper {
+  margin-left: 64px;
+  width: 100%;
+}
+
+.game-info__title {
+  font-weight: 900;
+  font-size: 48px;
+  color:rgb(40, 40, 40);
+  margin-bottom: 32px;
+}
+
+.release-date__label,
+.developer__label,
+.publisher__label,
+.platforms__label,
+.playtime__label,
+.achievements__label,
+.genres__label,
+.tags__label {
+  color:rgb(100, 100, 100);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.game-info__row-1 {
+  display: flex;
+  margin-bottom: 32px;
+}
+
+.developer__container {
+  padding: 0 72px;
+}
+
+.release-date,
+.developers,
+.publishers,
+.platforms,
+.description {
+  color:rgb(40, 40, 40);
+  font-size: 16px;
+}
+
+.release-date,
+.developers,
+.publishers,
+.playtime,
+.achievements,
+.platforms {
+  font-weight: 600;
+}
+
+.playtime,
+.achievements {
+  font-size: 20px;
+}
+
+.game-info__row-2 {
+  display: flex;
+  margin-bottom: 32px;
+}
+
+.playtime__container,
+.achievements__container {
+  display: flex;
+  align-items: center;
+}
+
+.playtime__container {
+  padding-right: 72px;
+}
+
+.playtime__icon,
+.achievements__icon {
+  margin-right: 8px;
+  font-size: 20px;
+  color: rgb(40, 40, 40);
+}
+
+.description__container {
+  margin-bottom: 48px;
+}
+
+.genres__label,
+.tags__label {
+  margin-bottom: 4px;
+}
+
+.genres, .tags, .platforms {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.genre, .tag {
+  color:rgb(40, 40, 40);
+  background-color: rgb(230, 230, 230);
+  border-radius: 5px;
+  padding: 4px 8px;
+  margin: 0 8px 8px 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.game-info__img--skeleton {
+  background-color: rgb(200, 200, 200);
+}
+
+.game-info__title--skeleton {
+  background-color:rgb(200, 200, 200);
+  width: 100%;
+  max-width: 800px;
+  height: 60px;
+  border-radius: 10px;
+  margin-bottom: 32px;
+}
+
+.game-info__labels--skeleton {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.game-info__label--skeleton--hidden {
+  visibility: hidden;
+}
+
+.game-info__label--skeleton,
+.game-info__label--skeleton--hidden {
+  background-color:rgb(200, 200, 200);
+  width: 100%;
+  max-width: 100px;
+  height: 15px;
+  border-radius: 5px;
+  margin-bottom: 4px;
+}
+
+.release-date-label__skeleton {
+  max-width: 130px;
+}
+
+.genres-label__skeleton {
+  max-width: 70px;
+}
+
+.tags-label__skeleton {
+  max-width: 50px;
+}
+
+.game-info__row-1--skeleton {
+  background-color:rgb(200, 200, 200);
+  width: 100%;
+  max-width: 700px;
+  height: 40px;
+  border-radius: 10px;
+  margin-bottom: 32px;
+}
+
+.game-info__row-2--skeleton {
+  background-color:rgb(200, 200, 200);
+  width: 100%;
+  max-width: 500px;
+  height: 30px;
+  border-radius: 10px;
+  margin-bottom: 32px;
+}
+
+.game-info__row-3--skeleton {
+  background-color:rgb(200, 200, 200);
+  width: 100%;
+  max-width: 600px;
+  height: 40px;
+  border-radius: 10px;
+  margin-bottom: 32px;
+}
+
+.description__container--skeleton {
+  background-color:rgb(200, 200, 200);
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  margin-bottom: 48px;
+}
+
+.genres__container--skeleton {
+  margin-bottom: 32px;
+}
+
+.genres__container--skeleton,
+.tags__container--skeleton {
+  background-color:rgb(200, 200, 200);
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
 }
 
 /* FOOTER */

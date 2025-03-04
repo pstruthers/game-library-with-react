@@ -146,7 +146,11 @@ const Games = () => {
               </div>
             ))
           : games.map((game) => (
-              <div className="game-card" key={game.id}>
+              <div
+                className="game-card"
+                key={game.id}
+                onClick={() => navigate(`/games/${game.id}`)}
+              >
                 <div className="game-card__container">
                   <figure className="game__img--wrapper">
                     <img

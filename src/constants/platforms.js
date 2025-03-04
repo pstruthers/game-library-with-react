@@ -14,4 +14,12 @@ export const platformIcons = {
   Nintendo: <img src="./Micrologo_Nintendo.svg" alt="Nintendo" className="nintendo" />,
 };
 
+export const platformNames = {
+  "PlayStation": "PS1",
+  "PlayStation 2": "PS2",
+  "PlayStation 3": "PS3",
+  "PlayStation 4": "PS4",
+  "PlayStation 5": "PS5"
+};
+
 export const allowedPlatforms = ["PlayStation", "Xbox", "PC", "Nintendo"];
