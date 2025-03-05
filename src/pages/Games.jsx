@@ -62,7 +62,6 @@ const Games = () => {
       setGamesCount(data.count);
       setPrevPage(data.previous);
       setNextPage(data.next);
-      console.log(data.results);
       setIsLoading(false);
     }
     setClearBtn(query.length > 0);
@@ -162,9 +161,11 @@ const Games = () => {
                   <div className="game__info--wrapper">
                     <div className="game__info">
                       <h5 className="game__title">{game.name}</h5>
-                      <h6 className="game__release-date">
-                        {formatDate(game.released)}
-                      </h6>
+                      {game.released && (
+                        <h6 className="game__release-date">
+                          {formatDate(game.released)}
+                        </h6>
+                      )}
                       <h6 className="game__platforms">
                         {game.parent_platforms
                           .filter((platform) =>

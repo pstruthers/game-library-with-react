@@ -313,12 +313,13 @@ a {
   color: rgb(200, 200, 200);
   font-size: 14px;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-top: 4px;
 }
 
 .game__platforms {
   display: flex;
   align-items: center;
+  margin-top: 8px;
 }
 
 .game__platforms svg,
@@ -329,7 +330,8 @@ a {
   margin: 4px 8px 0 8px;
 }
 
-.game__platforms svg:first-child {
+.game__platforms svg:first-child,
+.game__platforms img:first-child {
   margin-left: 0;
 }
 
