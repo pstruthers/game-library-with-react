@@ -506,7 +506,7 @@ a {
 }
 
 .developer__container {
-  padding: 0 72px;
+  margin: 0 72px;
 }
 
 .release-date,
@@ -681,6 +681,58 @@ a {
   width: 100%;
   height: 50px;
   border-radius: 10px;
+}
+
+/* MORE GAMES LIKE THIS - GAME INFO PAGE */
+
+.related-games__container {
+  margin: 64px 0;
+}
+
+.related-games__heading {
+  margin-bottom: 24px;
+}
+
+.related-games__list {
+  display: flex;
+}
+
+.related-games__list :first-child {
+  margin-left: 0;
+}
+
+.related-games__list :last-child {
+  margin-right: 0;
+}
+
+.related-game__container {
+  width: 100%;
+  margin: 0 16px;
+}
+
+.related-game__container:hover {
+  cursor: pointer;
+}
+
+.related-game__img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: all 300ms;
+}
+
+.related-game__img:hover {
+  box-shadow: 0 0 15px 5px rgb(120, 120, 120);
+}
+
+.related-game__title {
+  font-size: 16px;
+  color:rgb(40, 40, 40);
+}
+
+.related-game__title:hover {
+  text-decoration: underline;
 }
 
 /* FOOTER */
