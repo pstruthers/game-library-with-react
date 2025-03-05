@@ -47,7 +47,7 @@ const GameInfo = () => {
       </div>
       {isLoading ? (
         <div className="game-info__container">
-          <div className="game-info__img game-info__img--skeleton" />
+          <div className="game-info__img--container game-info__img--container--skeleton" />
           <div className="game-info__wrapper">
             <div className="game-info__title--skeleton" />
             <div className="game-info__labels--skeleton">
