@@ -438,12 +438,24 @@ a {
   display: flex;
 }
 
-.game-info__img {
+.game-info__img--container {
   width: 100%;
   max-width: 400px;
   height: 600px;
+  position: relative;
+}
+
+.game-info__img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 10px;
+}
+
+.esrb-rating {
+  position: absolute;
+  bottom: 8px;
+  left: 12px;
 }
 
 .game-info__wrapper {
@@ -464,6 +476,7 @@ a {
 .platforms__label,
 .playtime__label,
 .achievements__label,
+.rating__label,
 .genres__label,
 .tags__label {
   color:rgb(100, 100, 100);
@@ -494,12 +507,14 @@ a {
 .publishers,
 .playtime,
 .achievements,
+.rating,
 .platforms {
   font-weight: 600;
 }
 
 .playtime,
-.achievements {
+.achievements,
+.rating {
   font-size: 20px;
 }
 
@@ -509,17 +524,19 @@ a {
 }
 
 .playtime__container,
-.achievements__container {
+.achievements__container,
+.rating__container {
   display: flex;
   align-items: center;
 }
 
-.playtime__container {
-  padding-right: 72px;
+.achievements__container {
+  padding: 0 72px;
 }
 
 .playtime__icon,
-.achievements__icon {
+.achievements__icon,
+.rating__icon {
   margin-right: 8px;
   font-size: 20px;
   color: rgb(40, 40, 40);

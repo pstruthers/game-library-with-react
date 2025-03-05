@@ -14,6 +14,7 @@ import {
   faChevronRight,
   faStopwatch,
   faTrophy,
+  faStar
 } from "@fortawesome/free-solid-svg-icons";
 import { faPlaystation, faXbox, faWindows, faXTwitter, faFacebookF, faInstagram, faDiscord } from "@fortawesome/free-brands-svg-icons";
 
@@ -33,7 +34,8 @@ library.add(
   faInstagram,
   faDiscord,
   faStopwatch,
-  faTrophy
+  faTrophy,
+  faStar
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

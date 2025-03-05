@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { platformNames } from "../constants/platforms";
+import { esrbRatings } from "../constants/esrb";
 
 const GameInfo = () => {
   const params = useParams();
@@ -68,11 +69,18 @@ const GameInfo = () => {
         </div>
       ) : (
         <div className="game-info__container">
-          <img
-            src={game.background_image}
-            alt="Game cover"
-            className="game-info__img"
-          />
+          <div className="game-info__img--container">
+            <img
+              src={game.background_image}
+              alt="Game cover"
+              className="game-info__img"
+            />
+            {game.esrb_rating && (
+              <div className="esrb-rating">
+                {esrbRatings[game.esrb_rating.name]}
+              </div>
+            )}
+          </div>
           <div className="game-info__wrapper">
             <h2 className="game-info__title">{game.name}</h2>
             <div className="game-info__row-1">
@@ -124,6 +132,16 @@ const GameInfo = () => {
                     ? game.parent_achievements_count
                     : "-"}{" "}
                   <span className="achievements__label">ACHIEVEMENTS</span>
+                </h5>
+              </div>
+              <div className="rating__container">
+                <FontAwesomeIcon
+                  icon="fa-solid fa-star"
+                  className="rating__icon"
+                />
+                <h5 className="rating">
+                  {game.metacritic ? game.metacritic : "- "}
+                  <span className="rating__label">/100</span>
                 </h5>
               </div>
             </div>
