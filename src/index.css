@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 * {
   padding: 0;
@@ -11,7 +11,9 @@ html {
   scroll-behavior: smooth;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
 }
 
@@ -446,6 +448,7 @@ a {
   width: 100%;
   max-width: 400px;
   height: 600px;
+  box-shadow: 0 0 15px 5px rgb(200, 200, 200);
   border-radius: 10px;
   overflow: hidden;
   position: relative;
@@ -455,6 +458,14 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.no-img {
+  width: 100%;
+  max-width: 400px;
+  height: 600px;
+  box-shadow: 0 0 15px 5px rgb(200, 200, 200);
+  border-radius: 10px;
 }
 
 .esrb-rating {
@@ -471,7 +482,7 @@ a {
 .game-info__title {
   font-weight: 900;
   font-size: 48px;
-  color:rgb(40, 40, 40);
+  color: rgb(40, 40, 40);
   margin-bottom: 32px;
 }
 
@@ -484,7 +495,7 @@ a {
 .rating__label,
 .genres__label,
 .tags__label {
-  color:rgb(100, 100, 100);
+  color: rgb(100, 100, 100);
   font-size: 14px;
   font-weight: 400;
 }
@@ -503,7 +514,7 @@ a {
 .publishers,
 .platforms,
 .description {
-  color:rgb(40, 40, 40);
+  color: rgb(40, 40, 40);
   font-size: 16px;
 }
 
@@ -556,14 +567,17 @@ a {
   margin-bottom: 4px;
 }
 
-.genres, .tags, .platforms {
+.genres,
+.tags,
+.platforms {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 32px;
 }
 
-.genre, .tag {
-  color:rgb(40, 40, 40);
+.genre,
+.tag {
+  color: rgb(40, 40, 40);
   background-color: rgb(230, 230, 230);
   border-radius: 5px;
   padding: 4px 8px;
@@ -573,11 +587,15 @@ a {
 }
 
 .game-info__img--container--skeleton {
+  width: 100%;
+  max-width: 400px;
+  height: 600px;
+  border-radius: 10px;
   background-color: rgb(200, 200, 200);
 }
 
 .game-info__title--skeleton {
-  background-color:rgb(200, 200, 200);
+  background-color: rgb(200, 200, 200);
   width: 100%;
   max-width: 800px;
   height: 60px;
@@ -598,7 +616,7 @@ a {
 
 .game-info__label--skeleton,
 .game-info__label--skeleton--hidden {
-  background-color:rgb(200, 200, 200);
+  background-color: rgb(200, 200, 200);
   width: 100%;
   max-width: 100px;
   height: 15px;
@@ -619,7 +637,7 @@ a {
 }
 
 .game-info__row-1--skeleton {
-  background-color:rgb(200, 200, 200);
+  background-color: rgb(200, 200, 200);
   width: 100%;
   max-width: 700px;
   height: 40px;
@@ -628,7 +646,7 @@ a {
 }
 
 .game-info__row-2--skeleton {
-  background-color:rgb(200, 200, 200);
+  background-color: rgb(200, 200, 200);
   width: 100%;
   max-width: 500px;
   height: 30px;
@@ -637,7 +655,7 @@ a {
 }
 
 .game-info__row-3--skeleton {
-  background-color:rgb(200, 200, 200);
+  background-color: rgb(200, 200, 200);
   width: 100%;
   max-width: 600px;
   height: 40px;
@@ -646,7 +664,7 @@ a {
 }
 
 .description__container--skeleton {
-  background-color:rgb(200, 200, 200);
+  background-color: rgb(200, 200, 200);
   width: 100%;
   height: 200px;
   border-radius: 10px;
@@ -659,7 +677,7 @@ a {
 
 .genres__container--skeleton,
 .tags__container--skeleton {
-  background-color:rgb(200, 200, 200);
+  background-color: rgb(200, 200, 200);
   width: 100%;
   height: 50px;
   border-radius: 10px;

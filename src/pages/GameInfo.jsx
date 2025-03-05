@@ -47,7 +47,7 @@ const GameInfo = () => {
       </div>
       {isLoading ? (
         <div className="game-info__container">
-          <div className="game-info__img--container game-info__img--container--skeleton" />
+          <div className="game-info__img--container--skeleton" />
           <div className="game-info__wrapper">
             <div className="game-info__title--skeleton" />
             <div className="game-info__labels--skeleton">
@@ -70,11 +70,15 @@ const GameInfo = () => {
       ) : (
         <div className="game-info__container">
           <div className="game-info__img--container">
-            <img
-              src={game.background_image}
-              alt="Game cover"
-              className="game-info__img"
-            />
+            {game.background_image ? (
+              <img
+                src={game.background_image}
+                alt="Game cover"
+                className="game-info__img"
+              />
+            ) : (
+              <div className="no-img" />
+              )}
             {game.esrb_rating && (
               <div className="esrb-rating">
                 {esrbRatings[game.esrb_rating.name]}
