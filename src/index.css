@@ -718,16 +718,29 @@ a {
   cursor: pointer;
 }
 
-.related-game__img {
+.related-game__container--skeleton {
+  cursor: default !important;
+}
+
+.related-game__img,
+.related-game__img--skeleton {
   width: 100%;
   height: 350px;
-  object-fit: cover;
   border-radius: 10px;
+}
+
+.related-game__img {
+  object-fit: cover;
   transition: all 300ms;
 }
 
 .related-game__img:hover {
   box-shadow: 0 0 15px 5px rgb(120, 120, 120);
+}
+
+.related-game__img--skeleton {
+  background-color: rgb(200, 200, 200);
+  margin-bottom: 8px;
 }
 
 .related-game__title {
@@ -737,6 +750,14 @@ a {
 
 .related-game__title:hover {
   text-decoration: underline;
+}
+
+.related-game__title--skeleton {
+  width: 100%;
+  max-width: 200px;
+  height: 20px;
+  background-color: rgb(200, 200, 200);
+  border-radius: 5px;
 }
 
 /* FOOTER */

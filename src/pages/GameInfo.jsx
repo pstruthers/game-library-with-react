@@ -11,7 +11,8 @@ const GameInfo = () => {
 
   const [game, setGame] = useState({});
   const [relatedGames, setRelatedGames] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [gameInfoLoading, setGameInfoLoading] = useState(true);
+  const [relatedGamesLoading, setRelatedGamesLoading] = useState(true);
 
   function formatDate(dateString) {
     const date = new Date(dateString);
@@ -25,7 +26,7 @@ const GameInfo = () => {
 
   useEffect(() => {
     async function fetchGameInfo() {
-      setIsLoading(true);
+      setGameInfoLoading(true);
 
       const { data } = await axios.get(
         `https://api.rawg.io/api/games/${params.id}?key=58ee01e52ce14968a6c26b86c06b3f2b`
@@ -33,7 +34,7 @@ const GameInfo = () => {
 
       console.log(data);
       setGame(data);
-      setIsLoading(false);
+      setGameInfoLoading(false);
     }
 
     fetchGameInfo();
@@ -41,7 +42,7 @@ const GameInfo = () => {
 
   useEffect(() => {
     async function fetchRelatedGames() {
-      setIsLoading(true);
+      setRelatedGamesLoading(true);
 
       const genreIds = game.genres?.map((genre) => genre.id).join(",");
 
@@ -49,10 +50,10 @@ const GameInfo = () => {
         `https://api.rawg.io/api/games?key=58ee01e52ce14968a6c26b86c06b3f2b&genres=${genreIds}`
       );
 
-      const sortedGames = data.results.sort(() => Math.random() - 0.5)
+      const sortedGames = data.results.sort(() => Math.random() - 0.5);
 
       setRelatedGames(sortedGames.filter((g) => g.id !== game.id));
-      setIsLoading(false);
+      setRelatedGamesLoading(false);
     }
     fetchRelatedGames();
   }, [game]);
@@ -65,7 +66,7 @@ const GameInfo = () => {
           Back to Games
         </button>
       </div>
-      {isLoading ? (
+      {gameInfoLoading ? (
         <div className="game-info__container">
           <div className="game-info__img--container--skeleton" />
           <div className="game-info__wrapper">
@@ -230,18 +231,35 @@ const GameInfo = () => {
           </div>
           <div className="related-games__container">
             <h2 className="related-games__heading">More Games Like This</h2>
-            <div className="related-games__list">
-              {relatedGames.map((game) => (
-                <div className="related-game__container" key={game.id} onClick={() => navigate(`/games/${game.id}`)}>
-                  <img
-                    src={game.background_image}
-                    alt=""
-                    className="related-game__img"
-                  />
-                  <h5 className="related-game__title">{game.name}</h5>
-                </div>
-              )).slice(0,6)}
-            </div>
+            {relatedGamesLoading ? (
+              <div className="related-games__list">
+                {new Array(6).fill(0).map((_, index) => (
+                  <div className="related-game__container related-game__container--skeleton" key={index}>
+                    <div className="related-game__img--skeleton" />
+                    <div className="related-game__title--skeleton" />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="related-games__list">
+                {relatedGames
+                  .map((game) => (
+                    <div
+                      className="related-game__container"
+                      key={game.id}
+                      onClick={() => navigate(`/games/${game.id}`)}
+                    >
+                      <img
+                        src={game.background_image}
+                        alt=""
+                        className="related-game__img"
+                      />
+                      <h5 className="related-game__title">{game.name}</h5>
+                    </div>
+                  ))
+                  .slice(0, 6)}
+              </div>
+            )}
           </div>
         </>
       )}
