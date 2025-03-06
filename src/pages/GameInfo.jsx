@@ -67,27 +67,43 @@ const GameInfo = () => {
         </button>
       </div>
       {gameInfoLoading ? (
-        <div className="game-info__container">
-          <div className="game-info__img--container--skeleton" />
-          <div className="game-info__wrapper">
-            <div className="game-info__title--skeleton" />
-            <div className="game-info__labels--skeleton">
-              <div className="game-info__label--skeleton release-date-label__skeleton" />
+        <>
+          <div className="game-info__container">
+            <div className="game-info__img--container--skeleton" />
+            <div className="game-info__wrapper">
+              <div className="game-info__title--skeleton" />
+              <div className="game-info__labels--skeleton">
+                <div className="game-info__label--skeleton release-date-label__skeleton" />
+                <div className="game-info__label--skeleton" />
+                <div className="game-info__label--skeleton" />
+                <div className="game-info__label--skeleton--hidden" />
+              </div>
+              <div className="game-info__row-1--skeleton" />
+              <div className="game-info__row-2--skeleton" />
               <div className="game-info__label--skeleton" />
-              <div className="game-info__label--skeleton" />
-              <div className="game-info__label--skeleton--hidden" />
+              <div className="game-info__row-3--skeleton" />
+              <div className="description__container--skeleton" />
+              <div className="game-info__label--skeleton genres-label__skeleton" />
+              <div className="genres__container--skeleton" />
+              <div className="game-info__label--skeleton tags-label__skeleton" />
+              <div className="tags__container--skeleton" />
             </div>
-            <div className="game-info__row-1--skeleton" />
-            <div className="game-info__row-2--skeleton" />
-            <div className="game-info__label--skeleton" />
-            <div className="game-info__row-3--skeleton" />
-            <div className="description__container--skeleton" />
-            <div className="game-info__label--skeleton genres-label__skeleton" />
-            <div className="genres__container--skeleton" />
-            <div className="game-info__label--skeleton tags-label__skeleton" />
-            <div className="tags__container--skeleton" />
           </div>
-        </div>
+          <div className="related-games__container">
+            <h2 className="related-games__heading">More Games Like This</h2>
+            <div className="related-games__list">
+              {new Array(6).fill(0).map((_, index) => (
+                <div
+                  className="related-game__container related-game__container--skeleton"
+                  key={index}
+                >
+                  <div className="related-game__img--skeleton" />
+                  <div className="related-game__title--skeleton" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
       ) : (
         <>
           <div className="game-info__container">
@@ -234,7 +250,10 @@ const GameInfo = () => {
             {relatedGamesLoading ? (
               <div className="related-games__list">
                 {new Array(6).fill(0).map((_, index) => (
-                  <div className="related-game__container related-game__container--skeleton" key={index}>
+                  <div
+                    className="related-game__container related-game__container--skeleton"
+                    key={index}
+                  >
                     <div className="related-game__img--skeleton" />
                     <div className="related-game__title--skeleton" />
                   </div>
