@@ -7,10 +7,6 @@
   font-family: "Inter", sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 html,
 body,
 #root {
@@ -402,6 +398,14 @@ a {
 
 .prev__btn {
   margin-left: 16px;
+}
+
+.page__skeleton {
+  width: 100%;
+  max-width: 200px;
+  height: 30px;
+  background-color: rgb(200, 200, 200);
+  border-radius: 10px;
 }
 
 .next__btn {

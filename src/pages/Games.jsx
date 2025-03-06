@@ -16,7 +16,8 @@ const Games = () => {
   const [page, setPage] = useState(1);
   const [prevPage, setPrevPage] = useState(null);
   const [nextPage, setNextPage] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [gamesLoading, setGamesLoading] = useState(true);
+  const [headerLoading, setHeaderLoading] = useState(true);
   const [clearBtn, setClearBtn] = useState(false);
   const [searchParams] = useSearchParams();
   const initialQuery = searchParams.get("search") || "";
@@ -45,8 +46,12 @@ const Games = () => {
   }
 
   useEffect(() => {
+    setHeaderLoading(true);
+  }, [query]);
+
+  useEffect(() => {
     async function fetchGames() {
-      setIsLoading(true);
+      setGamesLoading(true);
 
       const allowedPlatformIDs = allowedPlatforms
         .flatMap((platform) => platformMap[platform] || [])
@@ -62,7 +67,8 @@ const Games = () => {
       setGamesCount(data.count);
       setPrevPage(data.previous);
       setNextPage(data.next);
-      setIsLoading(false);
+      setGamesLoading(false);
+      setHeaderLoading(false);
     }
     setClearBtn(query.length > 0);
     fetchGames();
@@ -112,7 +118,7 @@ const Games = () => {
           </div>
         </div>
         <div className="games__header--container row">
-          {isLoading ? (
+          {headerLoading ? (
             <>
               <div className="games__header--title-skeleton" />
               <div className="games__header--count-skeleton" />
@@ -138,7 +144,7 @@ const Games = () => {
         </div>
       </header>
       <div className="games__container row">
-        {isLoading
+        {gamesLoading
           ? new Array(20).fill(0).map((_, index) => (
               <div className="game-card" key={index}>
                 <div className="game-card__container--skeleton" />
@@ -183,7 +189,7 @@ const Games = () => {
                 </div>
               </div>
             ))}
-        {gamesCount === 0 ? (
+        {!gamesLoading && gamesCount === 0 ? (
           <div className="no-results__container">
             <p className="no-results__text">No results found.</p>
             <img
@@ -206,9 +212,13 @@ const Games = () => {
               <FontAwesomeIcon icon="fa-solid fa-chevron-left" />
               PREV
             </button>
-            <div>{`Page ${page} of ${Math.ceil(
-              gamesCount / GAMES_PER_PAGE
-            ).toLocaleString()}`}</div>
+            {gamesLoading ? (
+              <div className="page__skeleton" />
+            ) : (
+              <div>{`Page ${page} of ${Math.ceil(
+                gamesCount / GAMES_PER_PAGE
+              ).toLocaleString()}`}</div>
+            )}
             <button
               type="button"
               className="btn next__btn"
