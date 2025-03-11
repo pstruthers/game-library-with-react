@@ -12,6 +12,7 @@ import {
   faXmark,
   faChevronLeft,
   faChevronRight,
+  faChevronDown,
   faStopwatch,
   faTrophy,
   faStar
@@ -29,6 +30,7 @@ library.add(
   faWindows,
   faChevronLeft,
   faChevronRight,
+  faChevronDown,
   faXTwitter,
   faFacebookF,
   faInstagram,

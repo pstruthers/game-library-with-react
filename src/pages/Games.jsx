@@ -1,17 +1,20 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   allowedPlatforms,
   platformIcons,
   platformMap,
 } from "../constants/platforms";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 const Games = () => {
   const GAMES_PER_PAGE = 20;
 
   const [games, setGames] = useState([]);
+  const [sortOrder, setSortOrder] = useState(null);
+  const [showSortOptions, setShowSortOptions] = useState(false);
+  const dropdownRef = useRef(null);
   const [gamesCount, setGamesCount] = useState(0);
   const [page, setPage] = useState(1);
   const [prevPage, setPrevPage] = useState(null);
@@ -21,19 +24,36 @@ const Games = () => {
   const [clearBtn, setClearBtn] = useState(false);
   const [searchParams] = useSearchParams();
   const initialQuery = searchParams.get("search") || "";
+  const initialSort = searchParams.get("sort") || null;
   const [searchInput, setSearchInput] = useState(initialQuery);
   const [query, setQuery] = useState(initialQuery);
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    if (searchInput.length > 0) {
-      navigate(`/games?search=${encodeURIComponent(searchInput)}`);
-    } else {
-      navigate("/games");
-    }
+    const params = new URLSearchParams();
+    if (searchInput) params.set("search", searchInput);
+    if (sortOrder) params.set("sort", sortOrder);
+
+    const queryString = params.toString();
+    navigate(`/games${queryString ? `?${queryString}` : ""}`);
     setQuery(searchInput);
     setPage(1);
   };
+
+
+  const handleSortChange = (selectedSort) => {
+    const newSortOrder = selectedSort === null ? "default" : selectedSort;
+    const params = new URLSearchParams();
+    if (query) params.set("search", query);
+    if (newSortOrder) params.set("sort", newSortOrder);
+
+    const queryString = params.toString();
+    navigate(`/games${queryString ? `?${queryString}` : ""}`);
+
+    setSortOrder(newSortOrder);
+    setPage(1);
+  };
+
 
   function formatDate(dateString) {
     const date = new Date(dateString);
@@ -46,6 +66,19 @@ const Games = () => {
   }
 
   useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowSortOptions(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
     setHeaderLoading(true);
   }, [query]);
 
@@ -56,23 +89,35 @@ const Games = () => {
       const allowedPlatformIDs = allowedPlatforms
         .flatMap((platform) => platformMap[platform] || [])
         .join(",");
+      
+      if (initialSort) {
+        setSortOrder(initialSort);
+      }
 
-      const searchQuery = query && `&search=${query}`;
+      const params = new URLSearchParams();
+      if (query) params.set("search", query);
+      if (initialSort) params.set("ordering", initialSort);
+
+      const queryString = params.toString();
 
       const { data } = await axios.get(
-        `https://api.rawg.io/api/games?key=58ee01e52ce14968a6c26b86c06b3f2b&page=${page}&platforms=${allowedPlatformIDs}${searchQuery}`
+        `https://api.rawg.io/api/games?key=58ee01e52ce14968a6c26b86c06b3f2b&page=${page}&platforms=${allowedPlatformIDs}${
+          queryString ? `&${queryString}` : ""
+        }`
       );
 
       setGames(data.results);
+
       setGamesCount(data.count);
       setPrevPage(data.previous);
       setNextPage(data.next);
       setGamesLoading(false);
       setHeaderLoading(false);
     }
+
     setClearBtn(query.length > 0);
     fetchGames();
-  }, [page, query]);
+  }, [query, page, initialSort]);
 
   return (
     <div>
@@ -124,22 +169,74 @@ const Games = () => {
               <div className="games__header--count-skeleton" />
             </>
           ) : (
-            <>
-              <h2 className="games__header--title">
-                {query ? (
-                  <>
-                    Search results for <span className="blue">"{query}"</span>
-                  </>
-                ) : (
-                  "All Games"
+            <div className="games__header--wrapper">
+              <div className="games__header--left">
+                <h2 className="games__header--title">
+                  {query ? (
+                    <>
+                      Search results for <span className="blue">"{query}"</span>
+                    </>
+                  ) : (
+                    "All Games"
+                  )}
+                </h2>
+                {gamesCount !== 0 && (
+                  <p className="games__header--count">
+                    {gamesCount.toLocaleString()} results
+                  </p>
                 )}
-              </h2>
-              {gamesCount !== 0 && (
-                <p className="games__header--count">
-                  {gamesCount.toLocaleString()} results
-                </p>
-              )}
-            </>
+              </div>
+              <div className="games__header--right">
+                <div className="sort__container">
+                  <p className="sort__label">Sort by:</p>
+                  <div
+                    className="sort__dropdown"
+                    onClick={() => setShowSortOptions(!showSortOptions)}
+                    ref={dropdownRef}
+                  >
+                    {sortOrder
+                      ? sortOrder === "name"
+                        ? "Title A-Z"
+                        : sortOrder === "-name"
+                        ? "Title Z-A"
+                        : sortOrder === "released"
+                        ? "Oldest to Newest"
+                        : sortOrder === "-released"
+                        ? "Newest to Oldest"
+                        : sortOrder === "-metacritic"
+                        ? "Metacritic Score"
+                        : "Default"
+                      : "Default"}
+                    <FontAwesomeIcon
+                      icon="fa-solid fa-chevron-down"
+                      className="sort-arrow"
+                    />
+                    {showSortOptions && (
+                      <div className="sort__options">
+                        <div onClick={() => handleSortChange(null)}>
+                          Default
+                        </div>
+                        <div onClick={() => handleSortChange("name")}>
+                          Title A-Z
+                        </div>
+                        <div onClick={() => handleSortChange("-name")}>
+                          Title Z-A
+                        </div>
+                        <div onClick={() => handleSortChange("released")}>
+                          Oldest to Newest
+                        </div>
+                        <div onClick={() => handleSortChange("-released")}>
+                          Newest to Oldest
+                        </div>
+                        <div onClick={() => handleSortChange("-metacritic")}>
+                          Metacritic Score
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
           )}
         </div>
       </header>
@@ -167,11 +264,11 @@ const Games = () => {
                   <div className="game__info--wrapper">
                     <div className="game__info">
                       <h5 className="game__title">{game.name}</h5>
-                      {game.released && (
-                        <h6 className="game__release-date">
-                          {formatDate(game.released)}
-                        </h6>
-                      )}
+                      <h6 className="game__release-date">
+                        {game.released
+                          ? formatDate(game.released)
+                          : "Release date: N/A"}
+                      </h6>
                       <h6 className="game__platforms">
                         {game.parent_platforms
                           .filter((platform) =>
@@ -233,6 +330,12 @@ const Games = () => {
             </button>
           </div>
         )}
+      </div>
+      <div className="attribution">
+        <p>
+          Data obtained from RAWG API:{" "}
+          <Link to="https://rawg.io/apidocs">https://rawg.io/apidocs</Link>
+        </p>
       </div>
     </div>
   );

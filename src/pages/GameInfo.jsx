@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { platformNames } from "../constants/platforms";
 import { esrbRatings } from "../constants/esrb";
 
@@ -115,7 +115,9 @@ const GameInfo = () => {
                   className="game-info__img"
                 />
               ) : (
-                <div className="no-img" />
+                <div className="no-img">
+                  <p className="no-img__text">No image available</p>
+                </div>
               )}
               {game.esrb_rating && (
                 <div className="esrb-rating">
@@ -268,17 +270,25 @@ const GameInfo = () => {
                       key={game.id}
                       onClick={() => navigate(`/games/${game.id}`)}
                     >
-                      <img
-                        src={game.background_image}
-                        alt=""
-                        className="related-game__img"
-                      />
+                      <figure className="related-game__img--wrapper">
+                        <img
+                          src={game.background_image}
+                          alt=""
+                          className="related-game__img"
+                        />
+                      </figure>
                       <h5 className="related-game__title">{game.name}</h5>
                     </div>
                   ))
                   .slice(0, 6)}
               </div>
             )}
+          </div>
+          <div className="attribution">
+            <p>
+              Data obtained from RAWG API:{" "}
+              <Link to="https://rawg.io/apidocs">https://rawg.io/apidocs</Link>
+            </p>
           </div>
         </>
       )}
