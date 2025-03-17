@@ -124,7 +124,7 @@ const Games = () => {
       <header>
         <div className="games__banner">
           <img src="./bg.jpg" alt="Banner" className="games__banner--img" />
-          <div className="games__banner--container container">
+          <div className="games__banner--container">
             <h3 className="games__banner--title">Browse Games</h3>
             <div className="home__search-bar">
               <form
@@ -164,10 +164,15 @@ const Games = () => {
         </div>
         <div className="games__header--container row">
           {headerLoading ? (
-            <>
-              <div className="games__header--title-skeleton" />
-              <div className="games__header--count-skeleton" />
-            </>
+            <div className="games__header--wrapper">
+              <div className="games__header--left">
+                <div className="games__header--title-skeleton" />
+                <div className="games__header--count-skeleton" />
+              </div>
+              <div className="games__header--right">
+                <div className="sort__container--skeleton" />
+              </div>
+            </div>
           ) : (
             <div className="games__header--wrapper">
               <div className="games__header--left">
@@ -306,13 +311,13 @@ const Games = () => {
                 window.scrollTo({ top: 0 });
               }}
             >
-              <FontAwesomeIcon icon="fa-solid fa-chevron-left" />
               PREV
+              <FontAwesomeIcon icon="fa-solid fa-chevron-left" />
             </button>
             {gamesLoading ? (
               <div className="page__skeleton" />
             ) : (
-              <div>{`Page ${page} of ${Math.ceil(
+              <div className="page__count">{`Page ${page} of ${Math.ceil(
                 gamesCount / GAMES_PER_PAGE
               ).toLocaleString()}`}</div>
             )}
@@ -332,7 +337,7 @@ const Games = () => {
         )}
       </div>
       <div className="attribution">
-        <p>
+        <p className="attribution__para">
           Data obtained from RAWG API:{" "}
           <Link to="https://rawg.io/apidocs">https://rawg.io/apidocs</Link>
         </p>

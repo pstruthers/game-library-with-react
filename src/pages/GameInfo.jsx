@@ -78,8 +78,15 @@ const GameInfo = () => {
                 <div className="game-info__label--skeleton" />
                 <div className="game-info__label--skeleton--hidden" />
               </div>
+              <div className="release-date-label__skeleton" />
               <div className="game-info__row-1--skeleton" />
+              <div className="game-info__label--mobile-skeleton" />
+              <div className="game-info__row-1--mobile-skeleton" />
+              <div className="game-info__label--mobile-skeleton" />
+              <div className="game-info__row-1--mobile-skeleton game-info__row-1--publisher-skeleton" />
               <div className="game-info__row-2--skeleton" />
+              <div className="game-info__row-2--achievements-skeleton" />
+              <div className="game-info__row-2--rating-skeleton" />
               <div className="game-info__label--skeleton" />
               <div className="game-info__row-3--skeleton" />
               <div className="description__container--skeleton" />
@@ -90,7 +97,7 @@ const GameInfo = () => {
             </div>
           </div>
           <div className="related-games__container">
-            <h2 className="related-games__heading">More Games Like This</h2>
+            <div className="related-games__heading--skeleton" />
             <div className="related-games__list">
               {new Array(6).fill(0).map((_, index) => (
                 <div
@@ -248,44 +255,55 @@ const GameInfo = () => {
             </div>
           </div>
           <div className="related-games__container">
-            <h2 className="related-games__heading">More Games Like This</h2>
             {relatedGamesLoading ? (
-              <div className="related-games__list">
-                {new Array(6).fill(0).map((_, index) => (
-                  <div
-                    className="related-game__container related-game__container--skeleton"
-                    key={index}
-                  >
-                    <div className="related-game__img--skeleton" />
-                    <div className="related-game__title--skeleton" />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="related-games__list">
-                {relatedGames
-                  .map((game) => (
+              <>
+                <div className="related-games__heading--skeleton" />
+                <div className="related-games__list">
+                  {new Array(6).fill(0).map((_, index) => (
                     <div
-                      className="related-game__container"
-                      key={game.id}
-                      onClick={() => navigate(`/games/${game.id}`)}
+                      className="related-game__container related-game__container--skeleton"
+                      key={index}
                     >
-                      <figure className="related-game__img--wrapper">
-                        <img
-                          src={game.background_image}
-                          alt=""
-                          className="related-game__img"
-                        />
-                      </figure>
-                      <h5 className="related-game__title">{game.name}</h5>
+                      <div className="related-game__img--skeleton" />
+                      <div className="related-game__title--skeleton" />
                     </div>
-                  ))
-                  .slice(0, 6)}
-              </div>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="related-games__heading--container">
+                  <div className="horizontal-bar" />
+                  <h2 className="related-games__heading">
+                    More Games Like This
+                  </h2>
+                  <div className="horizontal-bar" />
+                </div>
+                <div className="related-games__list">
+                  {relatedGames
+                    .map((game) => (
+                      <div
+                        className="related-game__container"
+                        key={game.id}
+                        onClick={() => navigate(`/games/${game.id}`)}
+                      >
+                        <figure className="related-game__img--wrapper">
+                          <img
+                            src={game.background_image}
+                            alt=""
+                            className="related-game__img"
+                          />
+                        </figure>
+                        <h5 className="related-game__title">{game.name}</h5>
+                      </div>
+                    ))
+                    .slice(0, 6)}
+                </div>
+              </>
             )}
           </div>
           <div className="attribution">
-            <p>
+            <p className="attribution__para">
               Data obtained from RAWG API:{" "}
               <Link to="https://rawg.io/apidocs">https://rawg.io/apidocs</Link>
             </p>
